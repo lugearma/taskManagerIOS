@@ -14,6 +14,7 @@
 		92EAB2141C5378AB005118A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92EAB2121C5378AB005118A3 /* LaunchScreen.storyboard */; };
 		92EAB21F1C5378AB005118A3 /* MyTodoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EAB21E1C5378AB005118A3 /* MyTodoListTests.swift */; };
 		92EAB22A1C5378AC005118A3 /* MyTodoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EAB2291C5378AC005118A3 /* MyTodoListUITests.swift */; };
+		92EAB2381C57F5DD005118A3 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EAB2371C57F5DD005118A3 /* TodoList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		92EAB2251C5378AC005118A3 /* MyTodoListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyTodoListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		92EAB2291C5378AC005118A3 /* MyTodoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTodoListUITests.swift; sourceTree = "<group>"; };
 		92EAB22B1C5378AC005118A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92EAB2371C57F5DD005118A3 /* TodoList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				92EAB2091C5378AB005118A3 /* AppDelegate.swift */,
 				92EAB20B1C5378AB005118A3 /* ViewController.swift */,
 				92EAB20D1C5378AB005118A3 /* Main.storyboard */,
+				92EAB2371C57F5DD005118A3 /* TodoList.swift */,
 				92EAB2101C5378AB005118A3 /* Assets.xcassets */,
 				92EAB2121C5378AB005118A3 /* LaunchScreen.storyboard */,
 				92EAB2151C5378AB005118A3 /* Info.plist */,
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92EAB2381C57F5DD005118A3 /* TodoList.swift in Sources */,
 				92EAB20C1C5378AB005118A3 /* ViewController.swift in Sources */,
 				92EAB20A1C5378AB005118A3 /* AppDelegate.swift in Sources */,
 			);
