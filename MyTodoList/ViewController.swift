@@ -23,7 +23,6 @@ class ViewController: UIViewController {
         }else{
             print("no hay valor")
         }
-    
     }
 
     override func viewDidLoad() {
