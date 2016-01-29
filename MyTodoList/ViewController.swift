@@ -8,10 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    
+    static let MAX_TEXT_SIZE = 50
     
     let todoList: TodoList = TodoList()
     
@@ -23,6 +25,7 @@ class ViewController: UIViewController {
         }else{
             print("no hay valor")
         }
+        textField.text = ""
     }
 
     override func viewDidLoad() {
@@ -30,14 +33,29 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.dataSource = todoList
-        
+        tableView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    //MARK: Delegate tableView methods
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.textField.resignFirstResponder()
+    }
+    
+    //MARK: Delegate TextField methods
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if let taskString = textField.text as? NSString{
+            let updateString = taskString.stringByReplacingCharactersInRange(range, withString: string)
+            print("Esta cadena pone algo: ", updateString)
+            return updateString.characters.count <= ViewController.MAX_TEXT_SIZE
+        } else {
+            return true
+        }
+    }
 
 }
 

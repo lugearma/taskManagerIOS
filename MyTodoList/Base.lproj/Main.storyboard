@@ -28,28 +28,31 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Escribir tarea" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ELR-Td-3t4">
                                 <rect key="frame" x="26" y="29" width="495" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="yes" spellCheckingType="yes" keyboardType="alphabet" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="49O-qm-2F3"/>
+                                </connections>
                             </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RxC-w2-CLX">
-                                <rect key="frame" x="20" y="67" width="560" height="513"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oBj-sS-z7q">
+                                <rect key="frame" x="20" y="66" width="560" height="513"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="RxC-w2-CLX" firstAttribute="top" secondItem="ELR-Td-3t4" secondAttribute="bottom" constant="8" id="4OJ-jW-ROE"/>
                             <constraint firstItem="ELR-Td-3t4" firstAttribute="baseline" secondItem="SQF-ih-jb7" secondAttribute="baseline" id="6Qf-U3-FWf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SQF-ih-jb7" secondAttribute="trailing" constant="-5" id="Ebw-Rl-nPy"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="RxC-w2-CLX" secondAttribute="trailing" id="WDu-bO-nGL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oBj-sS-z7q" secondAttribute="trailing" id="QiS-XN-pLS"/>
                             <constraint firstItem="ELR-Td-3t4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="6" id="YbK-zw-PtQ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="RxC-w2-CLX" secondAttribute="bottom" constant="20" id="a6J-2u-hQO"/>
                             <constraint firstItem="SQF-ih-jb7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="dLr-hD-8uH"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="RxC-w2-CLX" secondAttribute="leading" id="f2t-el-8if"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oBj-sS-z7q" secondAttribute="bottom" constant="21" id="gWm-Dc-Rpd"/>
+                            <constraint firstItem="oBj-sS-z7q" firstAttribute="top" secondItem="ELR-Td-3t4" secondAttribute="bottom" constant="7" id="jS4-Mp-XvX"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="oBj-sS-z7q" secondAttribute="leading" id="qNf-Mm-nnK"/>
                             <constraint firstItem="SQF-ih-jb7" firstAttribute="leading" secondItem="ELR-Td-3t4" secondAttribute="trailing" constant="8" id="zgd-kP-LSm"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="RxC-w2-CLX" id="2Vk-36-pUL"/>
+                        <outlet property="tableView" destination="oBj-sS-z7q" id="dTi-Sb-hc5"/>
                         <outlet property="textField" destination="ELR-Td-3t4" id="An5-HM-u9f"/>
                     </connections>
                 </viewController>
