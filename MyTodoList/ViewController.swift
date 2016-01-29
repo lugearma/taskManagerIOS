@@ -15,6 +15,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     static let MAX_TEXT_SIZE = 50
     
+    var itemSelected: String?
+    
     let todoList: TodoList = TodoList()
     
     @IBAction func addButtonPressed(sender: UIButton){
@@ -47,7 +49,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("showItem", sender: self)
+        self.itemSelected = self.todoList.getItem(indexPath.row)
+        self.performSegueWithIdentifier("showItem", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let detailVIewController = segue.destinationViewController as? DetailViewController{
+            detailVIewController.item = self.itemSelected
+        }
     }
     
     //MARK: Delegate TextField methods

@@ -46,6 +46,10 @@ class TodoList: NSObject {
         
     }
     
+    func getItem(index: Int) -> String{
+        return items[index]
+    }
+    
     
 }
 

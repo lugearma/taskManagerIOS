@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Lista de Tareas-->
@@ -55,17 +56,17 @@
                     <connections>
                         <outlet property="tableView" destination="oBj-sS-z7q" id="dTi-Sb-hc5"/>
                         <outlet property="textField" destination="ELR-Td-3t4" id="An5-HM-u9f"/>
-                        <segue destination="ubA-7V-GDn" kind="show" identifier="showItem" id="Dc9-CJ-NEm"/>
+                        <segue destination="ubA-7V-GDn" kind="show" identifier="showItem" id="2ro-ya-DfH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="380" y="313"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="tP1-ez-FCo">
             <objects>
-                <viewController id="ubA-7V-GDn" sceneMemberID="viewController">
+                <viewController id="ubA-7V-GDn" customClass="DetailViewController" customModule="MyTodoList" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SsX-5k-ZSX"/>
                         <viewControllerLayoutGuide type="bottom" id="GR7-b0-IOf"/>
@@ -73,8 +74,67 @@
                     <view key="view" contentMode="scaleToFill" id="clW-kt-BBb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="mMJ-uj-Uvc">
+                                <rect key="frame" x="0.0" y="64" width="600" height="300"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3Nh-Rl-3Oi">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fcz-nk-TXV">
+                                                <rect key="frame" x="0.0" y="0.0" width="296" height="150"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4py-C0-uPW">
+                                                <rect key="frame" x="304" y="0.0" width="296" height="150"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="pny-gw-X5F">
+                                        <rect key="frame" x="0.0" y="150" width="600" height="150"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fYb-ac-4Xe">
+                                                <rect key="frame" x="0.0" y="0.0" width="296" height="150"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sin fecha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZd-Hf-yBw">
+                                                <rect key="frame" x="304" y="0.0" width="296" height="150"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="foX-gE-JMm"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="foX-gE-JMm"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mMJ-uj-Uvc" firstAttribute="top" secondItem="SsX-5k-ZSX" secondAttribute="bottom" id="FEV-Re-HyM"/>
+                            <constraint firstItem="mMJ-uj-Uvc" firstAttribute="leading" secondItem="clW-kt-BBb" secondAttribute="leading" id="OHm-2p-aMd"/>
+                            <constraint firstItem="mMJ-uj-Uvc" firstAttribute="height" secondItem="clW-kt-BBb" secondAttribute="height" multiplier="0.5" id="cop-xO-nEb"/>
+                            <constraint firstAttribute="trailing" secondItem="mMJ-uj-Uvc" secondAttribute="trailing" id="jYa-7x-zCx"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="SZd-Hf-yBw" id="hMM-3V-jnN"/>
+                        <outlet property="taskLabel" destination="4py-C0-uPW" id="Ctx-qt-I6v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0mb-3b-TnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
