@@ -46,6 +46,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         self.textField.resignFirstResponder()
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("showItem", sender: self)
+    }
+    
     //MARK: Delegate TextField methods
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if let taskString = textField.text as? NSString{
