@@ -21,7 +21,7 @@ class TodoList: NSObject {
         let documentsDirectoryURLs = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask) as [NSURL]
         
         let documentDirectoryURL = documentsDirectoryURLs.first!
-        print("El path del directory es: \(documentDirectoryURL)")
+        //print("El path del directory es: \(documentDirectoryURL)")
         return documentDirectoryURL.URLByAppendingPathComponent("todolist.items")
     }()
     

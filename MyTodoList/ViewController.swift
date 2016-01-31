@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     @IBAction func addButtonPressed(sender: UIButton){
         if let item = textField.text{
-            print("Elemento del textInput: ", "\(item)")
+            //print("Elemento del textInput: ", "\(item)")
             todoList.addItem(item)
             tableView.reloadData()
         }else{
@@ -36,6 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.dataSource = todoList
         tableView.delegate = self
+        print("Cargo")
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,7 +64,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if let taskString = textField.text as? NSString{
             let updateString = taskString.stringByReplacingCharactersInRange(range, withString: string)
-            print("Esta cadena pone algo: ", updateString)
+            //print("Esta cadena pone algo: ", updateString)
             return updateString.characters.count <= ViewController.MAX_TEXT_SIZE
         } else {
             return true
