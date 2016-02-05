@@ -8,34 +8,53 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var item: String?
+    var item: TodoItem?
+    var todoList: TodoList?
     static let dateFormat: String = "dd/MM/yyyy HH:mm"
     
     @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let itemDescription = item {
-            self.taskLabel.text = itemDescription
-        }
-        
+        showItem()
         addGestureRecognizerLabel()
+
+    }
+    
+    func showItem(){
+        if let itemDescription = item {
+            self.taskLabel.text = itemDescription.todo
+        }
+        if let date = item?.dueDate{
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "dd/MM/yyyy HH:mm"
+            self.dateLabel.text = formatter.stringFromDate(date)
+        }
+        if let image = item?.image{
+            self.imageView.image = image
+        }
     }
     
     @IBAction func dateSelected(sender: UIDatePicker) {
 //        print("Fecha seleccionada: ", "\(sender.date)")
         self.dateLabel.text = dateFormat(sender.date)
-        self.datePicker.hidden = true
+//        self.datePicker.hidden = true
+        toggleDatePicker()
     }
     
     @IBAction func confirmTaskDate(sender: UIBarButtonItem) {
         if let dateString = self.dateLabel.text {
             if let date = parseDate(dateString){
-                scheduleNotification(self.item!, date: date)
+                self.item?.dueDate = date
+                self.todoList?.saveItem()
+                scheduleNotification(self.item!.todo!, date: date)
+                self.navigationController?.popViewControllerAnimated(true)
             }
         }
     }
@@ -44,6 +63,7 @@ class DetailViewController: UIViewController {
     @IBAction func addImage(sender: UIBarButtonItem) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        imagePickerController.delegate = self
         self.presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
@@ -52,7 +72,7 @@ class DetailViewController: UIViewController {
         localNotification.fireDate = date
         localNotification.timeZone = NSTimeZone.defaultTimeZone()
         localNotification.alertTitle = "Remember this task!!!🙀"
-        localNotification.alertBody = self.item!
+        localNotification.alertBody = self.item?.todo
         localNotification.applicationIconBadgeNumber = 1
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
     }
@@ -79,12 +99,24 @@ class DetailViewController: UIViewController {
     }
     
     func toggleDatePicker(){
+        self.imageView.hidden = self.datePicker.hidden
         self.datePicker.hidden = !self.datePicker.hidden
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: ImagePickerController methods
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.item?.image = image
+            self.todoList?.saveItem()
+            self.imageView.image = image
+        }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     

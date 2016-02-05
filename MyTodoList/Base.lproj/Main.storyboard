@@ -184,6 +184,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="SZd-Hf-yBw" id="hMM-3V-jnN"/>
                         <outlet property="datePicker" destination="YqE-4k-305" id="FNW-Jh-ncj"/>
+                        <outlet property="imageView" destination="qGR-DA-owW" id="Y50-w7-n3i"/>
                         <outlet property="taskLabel" destination="4py-C0-uPW" id="Ctx-qt-I6v"/>
                     </connections>
                 </viewController>

@@ -15,19 +15,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     static let MAX_TEXT_SIZE = 50
     
-    var itemSelected: String?
-    
     let todoList: TodoList = TodoList()
+    var itemSelected: TodoItem?
     
     @IBAction func addButtonPressed(sender: UIButton){
         if let item = textField.text{
-            //print("Elemento del textInput: ", "\(item)")
-            todoList.addItem(item)
+            let todoItem = TodoItem()
+            todoItem.todo = item
+            todoList.addItem(todoItem)
             tableView.reloadData()
         }else{
             print("no hay valor")
         }
-        textField.text = ""
+        textField.text = nil
     }
 
     override func viewDidLoad() {
@@ -57,6 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let detailVIewController = segue.destinationViewController as? DetailViewController{
             detailVIewController.item = self.itemSelected
+            detailVIewController.todoList = self.todoList
         }
     }
     
