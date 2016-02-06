@@ -24,7 +24,25 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewDidLoad()
         showItem()
         addGestureRecognizerLabel()
-
+        addGestureRecognizerImage()
+    }
+    
+    func addGestureRecognizerImage(){
+        let gr = UITapGestureRecognizer(target: self, action: "rotateImage")
+//        let gr = UITapGestureRecognizer()
+        gr.numberOfTapsRequired = 2
+        gr.numberOfTouchesRequired = 1
+//        gr.addTarget(imageView, action: "rotateImage")
+        self.imageView.addGestureRecognizer(gr)
+        self.imageView.userInteractionEnabled = true
+    }
+    
+    func rotateImage(){
+        let animation = CABasicAnimation()
+        animation.keyPath = "transform.rotation"
+        animation.toValue = M_PI * 2.0
+        animation.duration = 1
+        self.imageView.layer.addAnimation(animation, forKey: "rotateAnimation")
     }
     
     func showItem(){
@@ -99,13 +117,39 @@ class DetailViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     func toggleDatePicker(){
-        self.imageView.hidden = self.datePicker.hidden
-        self.datePicker.hidden = !self.datePicker.hidden
+        if self.datePicker.hidden {
+            self.fadeInDatePicker()
+        }else{
+            self.fadeOutDatePicker()
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: Animations
+    func fadeInDatePicker() {
+        self.datePicker.alpha = 0
+        self.datePicker.hidden = false
+        UIView.animateWithDuration(1){ () -> Void in
+            self.datePicker.alpha = 1
+            self.imageView.alpha = 0
+        }
+    }
+    
+    func fadeOutDatePicker() {
+        self.datePicker.alpha = 1
+        self.datePicker.hidden = false
+        UIView.animateWithDuration(1, animations: { () -> Void in
+            self.datePicker.alpha = 0
+            self.imageView.alpha = 1
+            }){ (completed) -> Void in
+                if completed {
+                    self.datePicker.hidden = true
+                }
+        }
     }
     
     //MARK: ImagePickerController methods
